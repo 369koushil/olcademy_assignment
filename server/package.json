@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "a simple node js backend server built apis using expressjs\"",
+  "repository": {
+    "type": "git",
+    "url": "ttps://github.com/369koushil/olcademy_assignment"
+  },
+  "license": "ISC",
+  "author": "koushil",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mongoose": "^9.0.0"
+  }
+}
