@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connection to Datase
-mongoose.connect ('mongodb+srv://admin:Joker5678kkr@cluster0.qys8u.mongodb.net/newassignment4')
+mongoose.connect ('MONGO_URI')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
