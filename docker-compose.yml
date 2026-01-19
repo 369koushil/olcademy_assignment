@@ -1,0 +1,39 @@
+name: fullstack_app
+
+services:
+  backend:
+    image: boolean99/backend
+    container_name: backend
+    networks:
+      - my-network
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://db:27017/mydb
+    depends_on:
+      - db
+
+  frontend:
+    image: boolean99/frontend
+    container_name: frontend
+    networks:
+      - my-network
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  db:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+networks:
+  my-network:
+    driver: bridge
+
