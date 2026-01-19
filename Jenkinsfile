@@ -1,39 +1,38 @@
-Library("shared_lib_jenkins") _ 
+@Library('shared_lib_jenkins') _
 
 pipeline {
-    agent slave
+    agent any
 
     stages {
 
-        stage('clone'){
-            steps{
-                 repoClone("https://github.com/369koushil/olcademy_assignment","main")
-            }
-        }
-        stage('Build') {
+        stage('Clone Repository') {
             steps {
-                 dockerBuild("boolean99","frontend")
+                gitRepoClone(
+                    "https://github.com/369koushil/olcademy_assignment",
+                    "main"
+                )
             }
+        }
 
+        stage('Build Docker Images') {
             steps {
-                 dockerBuild("boolean99","backend")
+                buildDockerImages("boolean99", "frontend")
+                buildDockerImages("boolean99", "backend")
             }
         }
 
-        stage('push'){
-            steps{
-                 dockerPush("boolean99","frontend")
-            }
-            steps{
-                dockerPush("boolean99","backend")
+        stage('Push Docker Images') {
+            steps {
+                pushDockerImages("boolean99", "frontend")
+                pushDockerImages("boolean99", "backend")
             }
         }
 
-        stage('deploy'){
-           steps{
-             sh 'docker compose up --build'
-           }
+        stage('Deploy') {
+            steps {
+                sh 'docker compose pull'
+                sh 'docker compose up -d'
+            }
         }
-
     }
 }
