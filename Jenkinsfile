@@ -23,6 +23,7 @@ pipeline {
 
         stage('Push Docker Images') {
             steps {
+                dockerLogin('docker-hub-creds')
                 pushDockerImages("boolean99", "frontend")
                 pushDockerImages("boolean99", "backend")
             }
