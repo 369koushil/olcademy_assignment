@@ -1,18 +1,9 @@
 @Library('shared_lib_jenkins') _
 
 pipeline {
-    agent {label 'n1'}
+    agent { label 'n1' }
 
     stages {
-
-        stage('Clone Repository') {
-            steps {
-                gitRepoClone(
-                    "https://github.com/369koushil/olcademy_assignment",
-                    "main"
-                )
-            }
-        }
 
         stage('Build Docker Images') {
             steps {
