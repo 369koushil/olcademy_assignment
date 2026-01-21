@@ -1,12 +1,11 @@
 @Library('shared_lib_jenkins') _
 
 pipeline {
-    agent {label n1}
+    agent {label 'n1'}
 
     stages {
         stage('Build Docker Images') {
             steps {
-                sh 'newgrp docker'
                 buildDockerImages("boolean99", "frontend","frontend")
                 buildDockerImages("boolean99", "backend","backend")
             }
@@ -22,7 +21,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh 'docker compose up -build -d'
+                sh 'docker compose up --build -d'
             }
         }
     }
