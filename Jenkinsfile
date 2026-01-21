@@ -18,7 +18,8 @@ pipeline {
                 pushDockerImages("boolean99", "backend")
             }
         }
-
+        
+        
         stage('Deploy') {
             steps {
                 sh 'docker compose up --build -d'
