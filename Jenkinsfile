@@ -22,7 +22,8 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                sh 'docker compose up --build -d'
+                buildDockerImages("boolean99","backend")
+                buildDockerImages("boolean99","frontend")
             }
         }
     }
