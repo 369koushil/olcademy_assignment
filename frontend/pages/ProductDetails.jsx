@@ -16,7 +16,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`api/products/${id}`);
+        const res = await axios.get(`/api/products/${id}`);
         setProduct(res.data);
         setActiveImg(res.data.images[0]);
         setLoading(false);
@@ -44,13 +44,13 @@ const ProductDetails = () => {
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`api/products/${id}/reviews`, {
+      await axios.post(`/api/products/${id}/reviews`, {
         user: "Guest User",
         rating,
         comment
       });
       // Refresh data
-      const res = await axios.get(`api/products/${id}`);
+      const res = await axios.get(`/api/products/${id}`);
       setProduct(res.data);
       setComment('');
     } catch (err) {
