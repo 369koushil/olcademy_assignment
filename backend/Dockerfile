@@ -8,7 +8,8 @@ RUN npm install
 
 COPY . .
 
-RUN node seed.js 
+ENV PORT=5000
+ENV MONGOURI=mongodb://mongo:27017/perfumeDB
 
 EXPOSE 5000
 

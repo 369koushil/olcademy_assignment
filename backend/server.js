@@ -6,13 +6,14 @@ const seedDB=require('./seed')
 const Product = require('./models/Product');
 
 const app = express();
+const MONGO_URI = process.env.MONGOURI;
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/perfumeDB')
+mongoose.connect(MONGO_URI)
   .then(async () => {
     console.log('MongoDB Connected');
     await seedDB();
@@ -21,8 +22,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/perfumeDB')
 
 
 
-seedDB();
-
+app.get("/",(req,res)=>{
+     res.status(200).json({msg:"live"})
+})
 
 // Get All Products
 app.get('/api/products', async (req, res) => {
@@ -63,5 +65,5 @@ app.post('/api/products/:id/reviews', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log('Server running on port 5000');
 });
