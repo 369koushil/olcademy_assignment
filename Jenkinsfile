@@ -6,6 +6,7 @@ pipeline {
     stages {
         stage('Build Docker Images') {
             steps {
+                sh 'newgrp docker'
                 buildDockerImages("boolean99", "frontend","frontend")
                 buildDockerImages("boolean99", "backend","backend")
             }
