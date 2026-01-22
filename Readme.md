@@ -86,6 +86,11 @@ This ensures continuous integration without manual pipeline execution.
 
 This project uses a **Jenkins Shared Library** to keep the pipeline logic clean, reusable, and modular.
 
+The shared library is maintained in a separate GitHub repository:
+
+**Shared Library Repository:**  
+https://github.com/369koushil/shared_lib_jenkins
+
 Shared library responsibilities:
 - Docker login logic
 - Docker image build logic
